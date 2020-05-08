@@ -12,7 +12,7 @@ object CountInversions {
     for (i <- 1 to n - 1) {
       val prev = listBuffer(i - 1)
       val curr = listBuffer(i)
-      if (curr < prev) { // start to swap
+      if (curr < prev) {
         var j = i - 1
         while (j >= 0 && listBuffer(j) > curr) {
           j -= 1
