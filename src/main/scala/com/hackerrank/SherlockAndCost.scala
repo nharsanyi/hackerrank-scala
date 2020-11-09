@@ -4,11 +4,22 @@ import scala.collection.mutable.ListBuffer
 
 object SherlockAndCost {
 
+  def cost(b: Array[Int]): Int = {
+    val n = b.length
+    val dp = Array.ofDim[Long](n ,2)
+    for (i <- 0 to n - 2) {
+      val curr: Long = b(i)
+      dp(i + 1)(0) = math.max(dp(i)(0), dp(i)(1) + math.abs(1 - curr)) // select 1 -> dp(i,0) we choose 1 previously so the diff 0
+      dp(i + 1)(1) = math.max(dp(i)(0) + math.abs(1 - b(i + 1)), dp(i)(1) + math.abs(b(i + 1) - b(i))) // select value
+    }
+    math.max(dp(n - 1)(0), dp(n - 1)(1)).toInt
+  }
+
   type SelectedValue = Int
   type SumSoFar = Int
 
   // Complete the cost function below.
-  def cost(b: Array[Int]): Int = {
+  def cost2(b: Array[Int]): Int = {
     val n = b.length - 1
     var prevResult: List[(SelectedValue, SumSoFar)] = init(b)
     var max = Int.MinValue
