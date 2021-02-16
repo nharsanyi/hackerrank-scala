@@ -4,8 +4,35 @@ import scala.collection.mutable.ListBuffer
 
 object SpecialPalindromeAgain {
 
-  case class SubStr(char: Char, occ: Long)
   def substrCount(n: Int, s: String): Long = {
+    val occ = Array.ofDim[Int](n)
+    var result = 0l
+    var prev: Char = '0'
+    var index = -1
+    val uniqueChars = new StringBuilder("")
+    for (i <- 0 to n - 1) {
+        val curr = s.charAt(i)
+        if (i == 0 || curr != prev) {
+          index += 1
+          prev = curr
+          uniqueChars.append(prev)
+        }
+      occ(index) += 1
+    }
+    for (i <- 0 to uniqueChars.length - 1) {
+      result += (occ(i) * (occ(i) + 1)) / 2
+    }
+    for (i <- 1 to uniqueChars.length - 2) {
+      if (occ(i) == 1 && uniqueChars.charAt(i - 1) == uniqueChars.charAt(i + 1)) {
+        result += math.min(occ(i - 1), occ(i + 1))
+      }
+    }
+    result
+  }
+
+
+  case class SubStr(char: Char, occ: Long)
+  def substrCount_NonOpt(n: Int, s: String): Long = {
 
     val buffer = new ListBuffer[SubStr]()
 

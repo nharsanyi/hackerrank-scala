@@ -6,7 +6,7 @@ class SpecialPalindromeAgainTest extends FunSuite {
 
   test("should return 12 for mnonopoo") {
     val input = "mnonopoo"
-    assertResult(12)(SpecialPalindromeAgain.substrCount(input.length, input))
+    assertResult(12)(SpecialPalindromeAgain.substrCount_NonOpt(input.length, input))
   }
 
   test("should return 10 for aaaa") {
