@@ -1,5 +1,7 @@
 package com.interviewbit
 
+import com.core.ArrayUtils
+
 object QuickSort {
 
   def sort(array: Array[Int]): Unit = {
@@ -14,12 +16,6 @@ object QuickSort {
     }
   }
 
-  def swap(array: Array[Int], i: Int, j: Int): Unit = {
-    val tmp = array(i)
-    array(i) = array(j)
-    array(j) = tmp
-    println("Swapped")
-  }
 
   def pivot(array: Array[Int], low: Int, high: Int): Int = {
     val pivot: Int = array(high)
@@ -27,11 +23,11 @@ object QuickSort {
     for (j <- low to high) {
       if (array(j) < pivot) {
         i += 1
-        swap(array, i, j)
+        ArrayUtils.swap(array, i, j)
       }
     }
     i += 1
-    swap(array, i, high)
+    ArrayUtils.swap(array, i, high)
     i
   }
 }
