@@ -27,7 +27,7 @@ object TwoStrings {
       val subString = new StringBuilder(s1.charAt(i) + "")
       words = words + subString.mkString
       for (j <- i + 1 to n - 1) {
-        subString.+(s1.charAt(j))
+        subString.+(s1.charAt(j).toString)
         words = words + subString.mkString
       }
     }
@@ -38,7 +38,7 @@ object TwoStrings {
         return "YES"
       }
       for (j <- i + 1 to m - 1) {
-        subString.+(s2.charAt(j))
+        subString.+(s2.charAt(j).toString)
         if (words.contains(subString.mkString)) {
           return "YES"
         }
