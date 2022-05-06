@@ -19,5 +19,9 @@ class LargestSumContiguousSubArrayTest extends FunSuite {
     assertResult(-500)(LargestSumContiguousSubArray.maxSubArray(input))
   }
 
+  test("should return minvalue if only minvalue present") {
+    val input = Array(Int.MinValue, Int.MinValue)
+    assertResult(Int.MinValue)(LargestSumContiguousSubArray.maxSubArray(input))
+  }
 
 }
