@@ -4,6 +4,9 @@ class ListNode(_x: Int = 0, _next: ListNode = null) {
   var next: ListNode = _next
   var x: Int = _x
 
+  def setNext(_next: ListNode): Unit = {
+    next = _next
+  }
 
   def canEqual(other: Any): Boolean = other.isInstanceOf[ListNode]
 
