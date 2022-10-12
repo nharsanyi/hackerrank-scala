@@ -2,6 +2,8 @@ package com.leetcode
 
 import org.scalatest.FunSuite
 
+import scala.collection.immutable.BitSet
+
 class IntToRomanTest extends FunSuite {
 
   test("should return result for input 1") {
