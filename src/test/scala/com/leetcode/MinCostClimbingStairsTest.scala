@@ -11,4 +11,12 @@ class MinCostClimbingStairsTest extends FunSuite {
   test("should calculate min cost input 2") {
     assertResult(6)(MinCostClimbingStairs.minCostClimbingStairs(Array(1,100,1,1,1,100,1,1,100,1)))
   }
+
+  test("should calculate min cost 2 input 1") {
+    assertResult(15)(MinCostClimbingStairs.minCostClimbingStairs2(Array(10,15,20)))
+  }
+
+  test("should calculate min cost 2 input 2") {
+    assertResult(6)(MinCostClimbingStairs.minCostClimbingStairs2(Array(1,100,1,1,1,100,1,1,100,1)))
+  }
 }

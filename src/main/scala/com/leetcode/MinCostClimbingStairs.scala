@@ -4,6 +4,27 @@ import scala.collection.mutable.ListBuffer
 
 object MinCostClimbingStairs {
 
+  def minCostClimbingStairs2(cost: Array[Int]): Int = {
+    val n = cost.size
+    val dp = Array.fill[Int](n + 1)(-1)
+    dp(0) = cost(0)
+    dp(1) = cost(1)
+
+    def solve(step: Int): Int = {
+      if (dp(step) != -1) return dp(step)
+      val from2 = if (step - 2 >= 0) solve(step - 2) else Int.MaxValue
+      val from1 = if (step - 1 >= 0) solve(step - 1) else Int.MaxValue
+      var res = math.min(from1, from2)
+      if (step != n) {
+        res += cost(step)
+      }
+      dp(step) = res
+      return dp(step)
+
+    }
+    solve(n)
+  }
+
   def minCostClimbingStairs(cost: Array[Int]): Int = {
 
     val dp = Array.fill[Int](cost.length)(-1)
