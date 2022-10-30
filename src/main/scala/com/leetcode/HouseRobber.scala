@@ -32,4 +32,19 @@ object HouseRobber {
     }
     math.max(solve(n - 1), solve(n - 2))
   }
+
+  def rob2(nums: Array[Int]): Int = {
+    val n = nums.size
+    val dp = Array.fill[Int](n)(-1)
+
+    def solve(i: Int): Int = {
+      if (i < 0) return 0
+      if (dp(i) != -1) return dp(i)
+      val robPrev = solve(i - 1)
+      val robCurr = solve(i - 2) + nums(i)
+      dp(i) = math.max(robPrev, robCurr)
+      return dp(i)
+    }
+    solve(n - 1)
+  }
 }
