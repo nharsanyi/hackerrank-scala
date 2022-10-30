@@ -16,4 +16,15 @@ object GroupAnagrams {
     val value = buffer.map { case (_, ids) => ids.map(id => strs(id)).toList }
     value.toList
   }
+
+  def groupAnagrams2(strs: Array[String]): List[List[String]] = {
+    val map = new mutable.HashMap[String, ListBuffer[String]]()
+    for (str <- strs) {
+      val hashKey = str.toCharArray.sorted.mkString("")
+      var group = map.getOrElse(hashKey, ListBuffer.empty[String])
+      group.addOne(str)
+      map.put(hashKey, group)
+    }
+    map.values.map(_.toList).toList
+  }
 }

@@ -24,7 +24,7 @@ object Encoding {
       res(r)(c) = clean.charAt(i).toString
 
     }
-    val smallRes = res.map(arr => arr.filter(x => x != null && !x.isBlank).mkString(""))
+    val smallRes = res.map(arr => arr.filter(x => x != null && !x.isEmpty).mkString(""))
     val output = smallRes.mkString(" ")
     output
   }
