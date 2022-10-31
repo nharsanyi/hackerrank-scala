@@ -21,4 +21,33 @@ object Subset {
     result.toList
   }
 
+  def subsets_backtrack(nums: Array[Int]): List[List[Int]] = {
+    val n = nums.size
+    var result = ListBuffer.empty[List[Int]]
+
+
+    def solve(i: Int): List[List[Int]] = {
+      if (i < 0) {
+        result.addOne(List.empty[Int])
+        return result.toList
+      }
+      val prevLists = solve(i - 1)
+      val currNum = nums(i)
+      var currRes = ListBuffer.empty[List[Int]]
+      for (l <- prevLists) {
+        if (!l.isEmpty) {
+          var added = ListBuffer.empty[Int]
+          added.addAll(l)
+          added.addOne(currNum)
+          currRes.addOne(added.toList)
+        }
+      }
+      currRes.addOne(List(currNum))
+      result.addAll(currRes.toList)
+      return result.toList
+    }
+    solve(n - 1)
+    result.toList
+  }
+
 }
