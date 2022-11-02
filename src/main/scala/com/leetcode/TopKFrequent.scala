@@ -18,4 +18,15 @@ object TopKFrequent {
     }
     res.toArray
   }
+
+  def topKFrequent2(nums: Array[Int], k: Int): Array[Int] = {
+    val n = nums.length
+    var freqs = new mutable.HashMap[Int, Int]()
+    for (num <- nums) {
+      val oldFreq = freqs.getOrElse(num, 0)
+      freqs += (num -> (oldFreq + 1))
+    }
+    // 1 -> 3, 2 -> 2, 3 -> 1
+    freqs.toSeq.sortWith(_._2 < _._2).map(_._1).toArray.take(k)
+  }
 }
