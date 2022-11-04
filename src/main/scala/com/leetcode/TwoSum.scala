@@ -29,5 +29,25 @@ object TwoSum {
   }
 
 
+  def twoSum2(nums: Array[Int], target: Int): Array[Int] = {
+    var hashmap = new mutable.HashMap[Int, Array[Int]]()
+    val n = nums.length
+    for (i <- 0 to n - 1) {
+      val num = nums(i)
+      val oldValue = hashmap.getOrElse(num, Array())
+      hashmap += (num -> (i +: oldValue))
+    }
+    // 2 -> [0], 7 -> [1], 11 -> [2], 15 -> [3]
+    for (i <- 0 to n  - 1) {
+      val num = nums(i)
+      val missing = target - num
+      if (num == missing && hashmap.get(num).get.length >= 2) {
+        return hashmap.get(num).get
+      } else if (num != missing && hashmap.contains(missing)) {
+        return Array(i, hashmap.get(missing).get(0))
+      }
+    }
+    Array[Int]()
+  }
 
 }
